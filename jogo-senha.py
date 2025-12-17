@@ -1,27 +1,16 @@
-# Usar o import para importar o random
-# Fazer uma lista
-# Fazer uma estrutura de repetição que repita o randint até quando estiver 4 numeros na lista
-# Fazer um if que se o numero não estiver na lista do computador adicionar com o append
-# Criar uma lista para os palpites do usuario
-# Fazer outra estrutura de repetição para que repita a pergunta do palpite até estiver 4 numeros na lista do usuario
-# Verificar se tem algum numero repetido e se estiver pedir para ponhar outro no lugar
-# fazer um if para que se todos os numeros estejam certos então acertou tudo
-# criar um else e dentro dele ponhar um for e dentro do for ponhar um if que vai verificar se o numero esta no lugar certo
-# criar um elif para ver se o numero esta no lugar errado
-# e criar outro elif para ver se o numero não está na lista
-# Não esquecer de ponhar um while pra ficar repetindo o jogo
-
 
 import random 
 ganhou = False
 computador = []
 tentativa = 0
+
+
 while len(computador) < 4:
     numero = random.randint(0, 9)
     if numero not in computador:
         computador.append(numero)
 
-while not ganhou and tentativa < 5:
+while not ganhou and tentativa < 8:
     lista = []
 
     while len(lista) < 4:
@@ -36,14 +25,23 @@ while not ganhou and tentativa < 5:
         ganhou = True
         print("Acertou tudo")
     else:
-        for c in range(0, 4):
-            if lista[c] == computador [c]:
-                print("o número {} esta no lugar correto".format(lista[c]))
+        x = 0
+        z = 0
+        for c in range(0,4):
+            if lista[c] == computador[c]:
+                x += 1
                         
             elif lista[c] in computador:
-                print("o numero {} está no lugar errado".format(lista[c]))
-            elif lista[c] not in computador:
-                print("o número {} não existe".format(lista[c]))
+                z += 1
+
+        if x > 0 and z == 0:
+             print(f"Tem {x} número(s) no lugar certo")
+        elif x > 0 and z > 0:
+             print(f"Tem {x} número(s) no lugar certo e {z} números no lugar errado")
+        elif x == 0 and z > 0:
+            print(f"Há {z} números certos no lugar errado")
+        elif x == 0 and z == 0:
+            print("Tudo errado")
 if not ganhou:
      print("Você perdeu")
 
